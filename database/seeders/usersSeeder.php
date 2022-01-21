@@ -23,7 +23,7 @@ class usersSeeder extends Seeder
                 'name' => 'somsak sakset',
                 'email' => 'somsaksakset@gmail.com',
                 'password' => Hash::make('118101'),
-                'address' => 'samsak',
+                'role' => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -31,18 +31,11 @@ class usersSeeder extends Seeder
                 'name' => 'atinan sakset',
                 'email' => 'atinan@gmail.com',
                 'password' => Hash::make('622021100'),
-                'address' => 'atinan',
+                'role' => 2,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
-            [
-                'name' => 'saksri sakset',
-                'email' => 'saksri@gmail.com',
-                'password' => Hash::make('622021099'),
-                'address' => 'saksri',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
+            
         ];
 
         DB::table('users')->insert($data);
