@@ -28,15 +28,15 @@ class ProductController extends Controller
     {
         $fields = $request->validate([
             'product_name' => 'required',
-            'product_type' => 'required',
-            'product_price' => 'required',
+            'product_type' => 'required|integer',
+            'price' => 'required',
         ]);
         $product = Product::created([
             'product_name' => $fields['product_name'],
             'product_type' => $fields['product_type'],
-            'price' => $fields['pricr'],
+            'price' => $fields['price'],
         ]);
-        $result = ['name' => 'store', 'paylosd'=> 'Tnsert Successful.'];
+        $result = ['name' => 'store', 'paylosd'=> 'Insert Successful.'];
         return $result;
     }
 
