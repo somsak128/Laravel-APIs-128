@@ -27,9 +27,9 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $fields = $request->validate([
-            "name" => 'required|string',
-            "type" => 'required|integer',
-            "price" => 'required',
+            'product_name' => 'required',
+            'product_type' => 'required|integer',
+            'price' => 'required',
         ]);
 
         $product = Product::create([
@@ -39,8 +39,7 @@ class ProductController extends Controller
         ]);
 
         $result = [
-            'name' => 'store',
-            'payload' => $product,
+            'name' => 'store', 'payload' => $product,
         ];
         return response($result, 201);
     }
@@ -92,11 +91,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id)->delete();
-        $result = [
-            'name' => 'destroy',
-            'payload' => $product,
-        ];
+        $product = Product::where('id', $id);
+        $product->delete();
+        $result = ['name' => 'destroy', 'payload' => 'Deleted.'];
         return response($result, 200);
     }
 }
