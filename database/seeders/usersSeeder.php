@@ -30,11 +30,19 @@ class usersSeeder extends Seeder
             [
                 'name' => 'atinan sakset',
                 'email' => 'atinan@gmail.com',
-                'password' => Hash::make('622021100'),
+                'password' => Hash::make('118101118101'),
                 'role' => 2,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+            [
+                'name' => 'kanyarat sakset',
+                'email' => 'kanyarat@gmail.com',
+                'password' => Hash::make('123456'),
+                'role' => 2,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]
             
         ];
 

@@ -14,8 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-       $result = ['name' => 'index', 'paylosd'=>Product::all()];
-       return $result;
+        $result = ['payload' => Product::all(),];
+        return response($result, 200);
     }
 
     /**
@@ -27,17 +27,22 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $fields = $request->validate([
-            'product_name' => 'required',
-            'product_type' => 'required|integer',
-            'price' => 'required',
+            "name" => 'required|string',
+            "type" => 'required|integer',
+            "price" => 'required',
         ]);
-        $product = Product::created([
-            'product_name' => $fields['product_name'],
-            'product_type' => $fields['product_type'],
-            'price' => $fields['price'],
+
+        $product = Product::create([
+            "product_name" => $fields["name"],
+            "product_type" => $fields["type"],
+            "price" => $fields["price"],
         ]);
-        $result = ['name' => 'store', 'paylosd'=> 'Insert Successful.'];
-        return $result;
+
+        $result = [
+            'name' => 'store',
+            'payload' => $product,
+        ];
+        return response($result, 201);
     }
 
     /**
@@ -48,8 +53,11 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $result = ['name' => 'show', 'paylosd' => Product::where('product_id', $id)->first()];
-        return $result;
+        $result = [
+            'name' => 'show',
+            'payload' => Product::where('id',$id)->first(),
+        ];
+        return response($result, 200);
     }
 
     /**
@@ -59,11 +67,21 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        
-        $result = ['name' => 'update', 'paylosd'=>  $request -> all()];
-        return $result;
+        $fields = $request->validate([
+            "product_name" => 'required|string',
+            "product_type" => 'required|integer',
+            "price" => 'required',
+        ]);
+
+        $product = Product::where("id", $id)->update($request->all());
+
+        $result = [
+            'name' => 'update',
+            'payload' => $product,
+        ];
+        return response($result, 200);
     }
 
     /**
@@ -74,9 +92,11 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::where('id',$id);
-        $product->delete();
-        $result = ['name' => 'destroy', 'paylosd'=>  'Delete Successful.'];
-        return $result;
+        $product = Product::find($id)->delete();
+        $result = [
+            'name' => 'destroy',
+            'payload' => $product,
+        ];
+        return response($result, 200);
     }
 }
