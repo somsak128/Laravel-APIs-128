@@ -17,35 +17,29 @@ class usersSeeder extends Seeder
     public function run()
     {
         DB::table('users')->delete();
-
-        $data=[
-            [
-                'name' => 'somsak sakset',
-                'email' => 'somsaksakset@gmail.com',
-                'password' => Hash::make('118101'),
-                'role' => 1,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'name' => 'atinan sakset',
-                'email' => 'atinan@gmail.com',
-                'password' => Hash::make('118101118101'),
-                'role' => 2,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'name' => 'kanyarat sakset',
-                'email' => 'kanyarat@gmail.com',
-                'password' => Hash::make('123456'),
-                'role' => 2,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ]
-            
-        ];
-
-        DB::table('users')->insert($data);
+        DB::table('users')->insert([
+            'name' => 'somsak sakset',
+            'email' => 'somsaksakset@gmail.com',
+            'password' => Hash::make('118101'),
+            'role' => 1,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ],
+        [
+            'name' => 'atinan sakset',
+            'email' => 'atinan@gmail.com',
+            'password' => Hash::make('118101118101'),
+            'role' => 2,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ],
+        [
+            'name' => 'kanyarat sakset',
+            'email' => 'kanyarat@gmail.com',
+            'password' => Hash::make('123456'),
+            'role' => 2,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
     }
 }
